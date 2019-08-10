@@ -69,5 +69,32 @@ export default {
       line-height: 86px;
     }
   }
+
+  @media (orientation: portrait) {
+    $left: 10vw;
+    &__decorator {
+      padding-left: $left;
+      font-size: 14px;
+      line-height: 86px;
+    }
+    &__title {
+      padding-left: $left;
+      font-size: 36px;
+      line-height: 48px;
+      letter-spacing: 1.8px;
+    }
+    &__action {
+      padding-left: $left;
+      &-line {
+        width: 16px;
+        height: 1px;
+        margin-right: 16px;
+      }
+      &-text {
+        font-size: 14px;
+        line-height: 86px;
+      }
+    }
+  }
 }
 </style>
