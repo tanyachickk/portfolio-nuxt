@@ -41,7 +41,7 @@ export default {
       left: 5vh;
       width: 15vw;
       height: 20vw;
-      background: url("~@/assets/images/Iphone 1.png") no-repeat center center;
+      background: url("~@/assets/images/Iphone_1.png") no-repeat center center;
       background-size: contain;
 
       @media (orientation: portrait) {
@@ -58,7 +58,7 @@ export default {
       right: 0;
       width: 15vw;
       height: 20vw;
-      background: url("~@/assets/images/Iphone 2.png") no-repeat center center;
+      background: url("~@/assets/images/Iphone_2.png") no-repeat center center;
       background-size: contain;
       transform: translate(20%, -50%);
 
