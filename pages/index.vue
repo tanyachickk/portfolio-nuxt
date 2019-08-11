@@ -133,6 +133,7 @@ export default {
   width: 100vw;
   height: 100vh;
   color: white;
+  background-color: #1b1b1b;
   background-image: url("~@/assets/images/bg.jpg");
   background-size: cover;
   font-family: "Gilroy";
@@ -304,9 +305,9 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: gray;
     transform: translateY(100%);
     transition: transform 0.3s ease;
+    overflow: hidden;
     &.active {
       transform: translateY(0);
     }
