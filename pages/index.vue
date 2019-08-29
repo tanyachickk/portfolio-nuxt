@@ -59,7 +59,7 @@ function debounce(f, ms) {
     if (isCooldown) return;
     f.apply(this, arguments);
     isCooldown = true;
-    setTimeout(() => isCooldown = false, ms);
+    setTimeout(() => (isCooldown = false), ms);
   };
 }
 
@@ -137,24 +137,24 @@ export default {
       }
     },
     onKeyDown({ code }) {
-      if (code === 'ArrowDown' || code === 'ArrowRight') {
+      if (code === "ArrowDown" || code === "ArrowRight") {
         this.goToNextSection();
-      } else if (code === 'ArrowUp' || code === 'ArrowLeft') {
+      } else if (code === "ArrowUp" || code === "ArrowLeft") {
         this.goToPrevSection();
       }
     }
   },
   created() {
     if (process.client) {
-      document.addEventListener('wheel', debounce(this.onMouseWheel, 500));
-      document.addEventListener('keydown', this.onKeyDown);
+      // document.addEventListener('wheel', debounce(this.onMouseWheel, 500));
+      document.addEventListener("keydown", this.onKeyDown);
     }
   },
   beforeDestroy() {
     if (process.client) {
-      document.removeEventListener('keydown', this.onKeyDown);
+      document.removeEventListener("keydown", this.onKeyDown);
     }
-  },
+  }
 };
 </script>
 
