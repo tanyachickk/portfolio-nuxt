@@ -158,9 +158,8 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style>
 @import "~/assets/styles/main-fonts.scss";
-
 :root {
   --primary-pink: #e42ba5;
   --dark-pink: #c50f7a;
@@ -169,7 +168,9 @@ export default {
   --gray: #2b2b2b;
   --lighter-gray: #2f2f2f;
 }
+</style>
 
+<style lang="scss" scoped>
 .main {
   display: grid;
   grid-template-columns: 19% 31% 30% 20%;
