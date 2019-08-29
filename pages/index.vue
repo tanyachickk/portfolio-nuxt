@@ -53,6 +53,16 @@ import LinkedinIcon from "~/components/icons/LinkedinIcon.vue";
 import GithubIcon from "~/components/icons/GithubIcon.vue";
 import InstIcon from "~/components/icons/InstIcon.vue";
 
+function debounce(f, ms) {
+  let isCooldown = false;
+  return function() {
+    if (isCooldown) return;
+    f.apply(this, arguments);
+    isCooldown = true;
+    setTimeout(() => isCooldown = false, ms);
+  };
+}
+
 export default {
   name: "Main",
   components: {
@@ -108,8 +118,43 @@ export default {
     changeSection(index) {
       this.currentSectionIndex = index;
       this.isShowMenu = false;
+    },
+    goToNextSection() {
+      if (this.currentSectionIndex < this.sections.length - 1) {
+        this.currentSectionIndex++;
+      }
+    },
+    goToPrevSection() {
+      if (this.currentSectionIndex > 0) {
+        this.currentSectionIndex--;
+      }
+    },
+    onMouseWheel({ deltaY }) {
+      if (deltaY > 0) {
+        this.goToNextSection();
+      } else if (deltaY < 0) {
+        this.goToPrevSection();
+      }
+    },
+    onKeyDown({ code }) {
+      if (code === 'ArrowDown' || code === 'ArrowRight') {
+        this.goToNextSection();
+      } else if (code === 'ArrowUp' || code === 'ArrowLeft') {
+        this.goToPrevSection();
+      }
     }
-  }
+  },
+  created() {
+    if (process.client) {
+      document.addEventListener('wheel', debounce(this.onMouseWheel, 500));
+      document.addEventListener('keydown', this.onKeyDown);
+    }
+  },
+  beforeDestroy() {
+    if (process.client) {
+      document.removeEventListener('keydown', this.onKeyDown);
+    }
+  },
 };
 </script>
 
