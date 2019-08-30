@@ -1,7 +1,7 @@
 <template lang="pug">
   section.home-section
-    .home-section__phone
-    .home-section__phone
+    img.home-section__phone(:style="firstImageStyle" src="~@/assets/images/Iphone_1.png")
+    img.home-section__phone(:style="secondImageStyle" src="~@/assets/images/Iphone_2.png")
     pattern-text(:text="text")
 </template>
 
@@ -15,8 +15,46 @@ export default {
   },
   data() {
     return {
-      text: ["And I'm", "a frontend", "developer."]
+      text: ["And I'm", "a frontend", "developer."],
+      lFollowX: 0,
+      lFollowY: 0,
+      x: 0,
+      y: 0
     };
+  },
+  computed: {
+    firstImageStyle() {
+      return `transform: translate(${-this.x}px, ${-this.y}px)`;
+    },
+    secondImageStyle() {
+      return `transform: translate(${this.x}px, ${this.y}px)`;
+    }
+  },
+  methods: {
+    onMouseMove(e) {
+      const lMouseX = Math.max(
+        -100,
+        Math.min(100, window.innerWidth / 2 - e.clientX)
+      );
+      const lMouseY = Math.max(
+        -100,
+        Math.min(100, window.innerHeight / 2 - e.clientY)
+      );
+      this.lFollowX = (5 * lMouseX) / 100;
+      this.lFollowY = (5 * lMouseY) / 100;
+      this.x += this.lFollowX - this.x;
+      this.y += this.lFollowY - this.y;
+    }
+  },
+  created() {
+    if (process.client) {
+      document.addEventListener("mousemove", this.onMouseMove);
+    }
+  },
+  beforeDestroy() {
+    if (process.client) {
+      document.removeEventListener("mousemove", this.onMouseMove);
+    }
   }
 };
 </script>
@@ -36,12 +74,12 @@ export default {
 
   &__phone {
     position: absolute;
+    transition: translate 0.2s ease;
     &:nth-child(1) {
-      top: 5vh;
-      left: 5vh;
+      top: 2vh;
+      left: 2vh;
       width: 15vw;
       height: 20vw;
-      background: url("~@/assets/images/Iphone_1.png") no-repeat center center;
       background-size: contain;
 
       @media (orientation: portrait) {
@@ -50,17 +88,14 @@ export default {
         right: 0;
         width: 25vh;
         height: 30vh;
-        transform: translate(20%, -25%);
       }
     }
     &:nth-child(2) {
-      top: 45%;
-      right: 0;
+      top: 23%;
+      right: -8%;
       width: 15vw;
       height: 20vw;
-      background: url("~@/assets/images/Iphone_2.png") no-repeat center center;
       background-size: contain;
-      transform: translate(20%, -50%);
 
       @media (orientation: portrait) {
         top: auto;
