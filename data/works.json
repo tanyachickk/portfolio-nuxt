@@ -1,0 +1,44 @@
+[
+  {
+    "title": ["Reminders", "Clone"],
+    "description": "Some description",
+    "technologies": ["React", "React Hooks", "Firebase", "Styled-components"],
+    "img": "",
+    "link": ""
+  },
+  {
+    "title": ["LS Course", "Portfolio"],
+    "description": "Some description",
+    "technologies": ["Pug", "PostCSS", "VueJS"],
+    "img": "",
+    "link": ""
+  },
+  {
+    "title": ["LS Course", "Admin"],
+    "description": "Some description",
+    "technologies": ["Pug", "PostCSS", "VueJS"],
+    "img": "",
+    "link": ""
+  },
+  {
+    "title": ["VK Mobile", "Client"],
+    "description": "Some description",
+    "technologies": ["React Native", "MobX", "Styled-components"],
+    "img": "",
+    "link": ""
+  },
+  {
+    "title": ["Medicine", "Polls"],
+    "description": "Some description",
+    "technologies": ["VueJS", "TypeScript", "Pug", "SCSS"],
+    "img": "",
+    "link": ""
+  },
+  {
+    "title": ["Control", "Admin"],
+    "description": "Some description",
+    "technologies": ["VueJS", "TypeScript", "Pug", "SCSS"],
+    "img": "",
+    "link": ""
+  }
+]

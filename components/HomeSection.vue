@@ -2,7 +2,7 @@
   section.home-section
     img.home-section__phone(:style="firstImageStyle" src="~@/assets/images/Iphone_1.png")
     img.home-section__phone(:style="secondImageStyle" src="~@/assets/images/Iphone_2.png")
-    pattern-text(:text="text")
+    pattern-text.home-section__title(:text="text")
 </template>
 
 <script>
@@ -72,6 +72,10 @@ export default {
       transparent 80%
     );
 
+  @media (orientation: portrait) {
+    justify-content: center;
+  }
+
   &__phone {
     position: absolute;
     transition: translate 0.2s ease;
@@ -104,6 +108,18 @@ export default {
         height: 25vh;
         transform: translate(0, 40%);
       }
+    }
+  }
+  &__title {
+    margin: 0 2.2vw 5vw;
+    font-size: 4vw;
+
+    @media (orientation: portrait) {
+      margin: 0 10vw;
+      font-size: 10vw;
+    }
+    @media (orientation: portrait) and (min-width: 760px) {
+      font-size: 76px;
     }
   }
 }
