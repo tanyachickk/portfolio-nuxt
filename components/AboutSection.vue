@@ -3,8 +3,8 @@
     .about(v-for="(value, key) in content")
       .about__title {{ key }}
       template(v-for="item in value")
-        .about__text(v-for="row in item.text") {{ row }}
-        .about__date(v-if="item.date") [{{ item.date }}]
+        p.about__text(v-for="row in item.text") {{ row }}
+        p.secondary.about__date(v-if="item.date") [{{ item.date }}]
 </template>
 
 <script>
@@ -38,6 +38,10 @@ export default {
             date: "June 2016 – September 2017"
           },
           {
+            text: ["LoftSchool,", "Mentor (Advanced web development)"],
+            date: "Septempber 2019 – November 2019"
+          },
+          {
             text: ["SmaSS technologies LLC,", "Frontend developer"],
             date: "March 2018 - now"
           }
@@ -47,21 +51,21 @@ export default {
             text: ["HTML, Pug, CSS, SCSS", "JavaScript, TypeScript, VueJS"]
           }
         ],
-        Competitions: [
+        "Competitions & Hackathons": [
           {
             text: [
               "Urban.Tech Challenge Moscow",
               "1st in Advanced Analytics track"
             ],
-            date: "7-10 December 2018"
+            date: "7-10 December 2018, Moscow"
           },
           {
             text: ["Energy Hack. Digital Super Hero", "2nd place"],
-            date: "6-7 April 2019"
+            date: "6-7 April 2019, Kazan"
           },
           {
             text: ["Leaders of Digital", "Finalist"],
-            date: "29-30 June 2019"
+            date: "27-29 September 2019, Kazan"
           }
         ]
       }
@@ -71,6 +75,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~@/styles/functions.scss";
+
 .about-section {
   display: flex;
   flex-direction: column;
@@ -78,35 +84,25 @@ export default {
   background: url("./../assets/images/content-bg.jpg") no-repeat center center;
   background-size: cover;
   height: 100%;
-  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  overflow-y: auto;
 }
 .about {
-  padding: 20px 85px;
+  padding: px-to-vw(20) px-to-vw(85);
   border-bottom: 1px solid rgba($color: #3b3b3b, $alpha: 0.2);
+  scroll-snap-align: start;
   &__title {
     color: var(--primary-pink);
     font-family: "Gilroy";
-    font-size: 18px;
+    font-size: px-to-vw(18);
     font-weight: 400;
-    line-height: 75px;
+    line-height: px-to-vw(75);
     text-transform: uppercase;
-    letter-spacing: 3.6px;
-  }
-  &__text {
-    color: white;
-    font-family: "Courier";
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 28px;
+    letter-spacing: px-to-vw(3.6);
   }
   &__date {
-    margin-top: 10px;
-    margin-bottom: 25px;
-    color: #323232;
-    font-family: "Courier";
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 36px;
+    margin-top: px-to-vw(10);
+    margin-bottom: px-to-vw(25);
   }
 }
 </style>

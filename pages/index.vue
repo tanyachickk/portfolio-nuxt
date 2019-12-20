@@ -10,13 +10,13 @@
         component.page-section(:is="info.section")
     .socials
       a.social-icon(href="https://vk.com/tanyachickk" target="_blank")
-        vk-icon(:width="19" :height="16")
+        vk-icon(width="38%" height="32%")
       a.social-icon(href="https://www.linkedin.com/in/tatiana-kurochkina-217b24163/" target="_blank")
-        linkedin-icon(:width="16" :height="16")
+        linkedin-icon(width="32%" height="32%")
       a.social-icon(href="https://github.com/tanyachickk" target="_blank")
-        github-icon(:width="16" :height="16")
+        github-icon(width="32%" height="32%")
       a.social-icon(href="https://www.instagram.com/tanyachickk/" target="_blank")
-        inst-icon(:width="16" :height="16")
+        inst-icon(width="32%" height="32%")
     
     .burger-menu(@click="isShowMenu = true")
       bar-icon
@@ -158,19 +158,57 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" >
 @import "~/assets/styles/main-fonts.scss";
+@import "~@/styles/functions.scss";
 :root {
   --primary-pink: #e42ba5;
   --dark-pink: #c50f7a;
   --extra-dark-gray: #131313;
-  --dark-gray: #232323;
+  --dark-gray: #323232;
   --gray: #2b2b2b;
   --lighter-gray: #2f2f2f;
+}
+
+h2 {
+  color: white;
+  font-family: "Gilroy";
+  font-size: px-to-vw(18);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: px-to-vw(3.6);
+  line-height: px-to-vw(28);
+  &.accent {
+    color: var(--primary-pink);
+  }
+}
+
+p {
+  color: white;
+  font-family: "Courier";
+  font-size: px-to-vw(18);
+  font-weight: 400;
+  line-height: px-to-vw(28);
+
+  &.secondary {
+    color: var(--dark-gray);
+  }
+}
+
+a {
+  color: white;
+  font-family: "Courier";
+  font-size: px-to-vw(18);
+  font-weight: 400;
+  letter-spacing: normal;
+  &:hover {
+    text-decoration: none;
+  }
 }
 </style>
 
 <style lang="scss" scoped>
+@import "~@/styles/functions.scss";
 .main {
   display: grid;
   grid-template-columns: 19% 31% 30% 20%;
@@ -232,8 +270,8 @@ export default {
       display: none;
     }
     &__link {
-      font-size: 18px;
-      line-height: 75px;
+      font-size: px-to-vw(18);
+      line-height: px-to-vw(75);
       letter-spacing: 0.9px;
       text-transform: uppercase;
       color: var(--lighter-gray);
@@ -364,15 +402,15 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding-left: 150px;
-  padding-bottom: 130px;
+  padding-left: px-to-vw(150);
+  padding-bottom: px-to-vw(130);
   .social-icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
-    width: 50px;
-    height: 50px;
+    margin-top: px-to-vw(20);
+    width: px-to-vw(50);
+    height: px-to-vw(50);
     background-color: var(--dark-gray);
     border-radius: 50%;
     color: white;

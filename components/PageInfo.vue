@@ -29,6 +29,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~@/styles/functions.scss";
+
 .page-info {
   display: flex;
   flex-direction: column;
@@ -37,8 +39,8 @@ export default {
   width: 100%;
   &__decorator {
     font-family: "Courier";
-    font-size: 18px;
-    line-height: 86px;
+    font-size: px-to-vw(18);
+    line-height: px-to-vw(86);
     color: var(--primary-pink);
   }
   &__slider {
@@ -48,25 +50,25 @@ export default {
   &__title {
     color: white;
     font-family: "Gilroy";
-    font-size: 72px;
+    font-size: px-to-vw(72);
     font-weight: 400;
-    line-height: 86px;
-    letter-spacing: 3.6px;
+    line-height: px-to-vw(86);
+    letter-spacing: px-to-vw(3.6);
   }
   &__action {
     display: flex;
     align-items: center;
     &-line {
-      width: 35px;
-      height: 2px;
-      margin-right: 35px;
+      width: px-to-vw(35);
+      height: px-to-vw(2);
+      margin-right: px-to-vw(35);
       background-color: white;
     }
     &-text {
       color: white;
       font-family: "Courier";
-      font-size: 18px;
-      line-height: 86px;
+      font-size: px-to-vw(18);
+      line-height: px-to-vw(86);
     }
   }
 

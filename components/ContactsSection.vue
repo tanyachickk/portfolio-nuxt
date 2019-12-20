@@ -2,30 +2,58 @@
   section.contacts-section
     .contacts-section__form
       .section-pattern
-      .section-content
-        .contact-form__title Write me
-        input.contact-form__input(placeholder="Name")
-        input.contact-form__input(placeholder="E-mail")
-        textarea.contact-form__textarea(placeholder="Message")
-        button Send
+      .section-content.contact-form
+        h2.contact-form__title Write me
+        basic-input.contact-form__input(placeholder="Name*")
+        basic-input.contact-form__input(placeholder="E-mail*")
+        basic-textarea.contact-form__textarea(v-model="formData.message" placeholder="Message*" rows="1")
+        basic-button Send
     .contacts-section__text
       .section-pattern
       .section-content
-        .section-content__title Contacts
-        .section-content__text E-mail:
-          a(href="mailto:tatikurochkina@gmail.com") tatikurochkina@gmail.com
-        .section-content__text Telegram:
-          a(href="tg://resolve?domain=tanyachickk") @tanyachickk
-        .section-content__secondary-text Located in Samara
+        h2.accent.section-content__title Contacts
+        p.section-content__text(v-for="contact in contacts") {{ contact.title }}
+          a.section-content__link(:href="contact.link" target="_blank") {{ contact.value }}
+        p.secondary.section-content__secondary-text.secondary Located in Samara
 </template>
 
 <script>
+import BasicInput from "@/components/BasicInput.vue";
+import BasicTextarea from "@/components/BasicTextarea.vue";
+import BasicButton from "@/components/BasicButton.vue";
+
 export default {
-  name: "ContactsSection"
+  name: "ContactsSection",
+  components: {
+    BasicInput,
+    BasicTextarea,
+    BasicButton
+  },
+  data() {
+    return {
+      contacts: [
+        {
+          title: "E-mail:",
+          link: "mailto:tatikurochkina@gmail.com",
+          value: "tatikurochkina@gmail.com"
+        },
+        {
+          title: "Telegram:",
+          link: "tg://resolve?domain=tanyachickk",
+          value: "@tanyachickk"
+        }
+      ],
+      formData: {
+        message: ""
+      }
+    };
+  }
 };
 </script>
 
 <style lang="scss" scoped>
+@import "~@/styles/functions.scss";
+
 .contacts-section {
   display: flex;
   flex-direction: column;
@@ -33,7 +61,7 @@ export default {
   align-items: stretch;
   height: 100%;
 
-  $contacts-padding: 6vmin;
+  $contacts-padding: px-to-vw(80) px-to-vw(85);
   &__form {
     position: relative;
     padding: $contacts-padding;
@@ -44,6 +72,7 @@ export default {
   &__text {
     position: relative;
     height: 30%;
+    min-height: 17vw;
     padding: $contacts-padding;
     color: white;
     background: url("~@/assets/images/content-bg.jpg") no-repeat center center;
@@ -68,6 +97,30 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
+    padding: $contacts-padding;
+
+    &__title {
+      margin-bottom: px-to-vw(28);
+    }
+
+    &__link {
+      margin-left: px-to-vw(10);
+    }
+
+    &__secondary-text {
+      margin-top: px-to-vw(26);
+    }
+  }
+}
+.contact-form {
+  &__title {
+    margin-bottom: px-to-vw(38);
+  }
+  &__input {
+    margin-bottom: px-to-vw(18);
+  }
+  &__textarea {
+    margin-bottom: px-to-vw(43);
   }
 }
 </style>
