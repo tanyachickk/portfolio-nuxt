@@ -1,7 +1,7 @@
 <template lang="pug">
   .main
     .info
-      page-info(:sections="sections" :current-section-index="currentSectionIndex" @change-index="changeSection($event)")
+      page-info(:sections="sections" :active-index="currentSectionIndex" @change="changeSection($event)")
     .content
       .section-content(
         v-for="(info, index) in sections"

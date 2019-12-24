@@ -1,39 +1,39 @@
 <template lang="pug">
-  .page-info
-    .page-info__slider(ref="carousel")
-      .page-info__content(
-        v-for="(section, index) in sections"
-      )
-        .page-info__title(v-for="line in section.title") {{ line }}
-    .page-info__decorator &#60;title&#62;
-    .page-info__action
-      .page-info__action-line
-      .page-info__action-text Contact me
+  no-ssr
+    .page-info
+      carousel.page-info__slider(v-bind="carouselOptions" :value="activeIndex" @page-change="$emit('change', $event)")
+        slide.page-info__content(
+          v-for="(section, index) in sections"
+          :key="index"
+        )
+          .page-info__title(v-for="line in section.title") {{ line }}
+      .page-info__decorator &#60;title&#62;
+      .page-info__action
+        .page-info__action-line
+        .page-info__action-text Contact me
 </template>
 
 <script>
-import SliderMx from "~/mixins/SliderMx.js";
-
 export default {
   name: "PageInfo",
-  mixins: [SliderMx],
   props: {
     sections: {
       type: Array,
       default: () => []
     },
-    currentSectionIndex: {
+    activeIndex: {
       type: Number,
       default: 0
     }
   },
-  watch: {
-    currentSectionIndex(value) {
-      this.goTo(value);
-    },
-    activeIndex(value) {
-      this.$emit("change-index", value);
-    }
+  data() {
+    return {
+      carouselOptions: {
+        perPage: 1,
+        speed: 300,
+        paginationEnabled: false
+      }
+    };
   }
 };
 </script>
@@ -58,10 +58,7 @@ export default {
     color: var(--primary-pink);
   }
   &__slider {
-    display: flex;
     width: 100%;
-    scroll-snap-type: x mandatory;
-    overflow-x: auto;
   }
   &__content {
     flex-shrink: 0;
@@ -69,7 +66,6 @@ export default {
     width: 100%;
     padding-top: px-to-vw(86);
     padding-bottom: px-to-vw(86);
-    scroll-snap-align: start;
   }
   &__title {
     color: white;
