@@ -1,14 +1,14 @@
 <template lang="pug">
   .main
     .info
-      page-info(:sections="sections" :current-section-index="currentSectionIndex")
+      page-info(:sections="sections" :current-section-index="currentSectionIndex" @change-index="changeSection($event)")
     .content
       .section-content(
         v-for="(info, index) in sections"
         :class="index <= currentSectionIndex && 'active'"
       )
         component.page-section(:is="info.section")
-    .socials
+    .socials(v-if="isShowSocials")
       a.social-icon(href="https://vk.com/tanyachickk" target="_blank")
         vk-icon(width="38%" height="32%")
       a.social-icon(href="https://www.linkedin.com/in/tatiana-kurochkina-217b24163/" target="_blank")
@@ -112,6 +112,9 @@ export default {
   computed: {
     currentSection() {
       return this.sections[this.currentSectionIndex];
+    },
+    isShowSocials() {
+      return this.currentSectionIndex === 0 || this.currentSectionIndex === 3;
     }
   },
   methods: {
@@ -158,7 +161,7 @@ export default {
 };
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 @import "~/assets/styles/main-fonts.scss";
 @import "~@/styles/functions.scss";
 :root {
@@ -168,6 +171,36 @@ export default {
   --dark-gray: #323232;
   --gray: #2b2b2b;
   --lighter-gray: #2f2f2f;
+}
+
+html,
+body,
+#__nuxt,
+#__layout {
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+* {
+  -ms-overflow-style: none;
+}
+* {
+  overflow: -moz-scrollbars-none;
 }
 
 h2 {
@@ -181,6 +214,12 @@ h2 {
   &.accent {
     color: var(--primary-pink);
   }
+
+  @media (orientation: portrait) {
+    font-size: px-to-vh(14);
+    letter-spacing: px-to-vh(2.8);
+    line-height: px-to-vh(75);
+  }
 }
 
 p {
@@ -193,6 +232,11 @@ p {
   &.secondary {
     color: var(--dark-gray);
   }
+
+  @media (orientation: portrait) {
+    font-size: px-to-vh(14);
+    line-height: px-to-vh(22);
+  }
 }
 
 a {
@@ -203,6 +247,10 @@ a {
   letter-spacing: normal;
   &:hover {
     text-decoration: none;
+  }
+
+  @media (orientation: portrait) {
+    font-size: px-to-vh(14);
   }
 }
 </style>
@@ -215,7 +263,7 @@ a {
   grid-template-rows: 100%;
   grid-template-areas: "navigation info content socials";
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   color: white;
   background-color: #1b1b1b;
   background-image: url("~@/assets/images/bg.jpg");
@@ -244,9 +292,11 @@ a {
   @media (orientation: portrait) {
     position: fixed;
     top: 0;
-    right: 5px;
+    right: 0;
     display: block;
-    padding: 20px;
+    padding: px-to-vh(20);
+    padding-right: 7vw;
+    font-size: px-to-vh(16);
     color: white;
     z-index: 5;
   }
@@ -302,15 +352,19 @@ a {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 36px;
-        height: 36px;
+        width: px-to-vh(36);
+        height: px-to-vh(36);
+        font-size: px-to-vh(16);
         background-color: var(--dark-pink);
         border-radius: 50%;
-        margin-bottom: 28px;
+        margin-bottom: px-to-vh(28);
       }
       &__link {
         position: relative;
         color: white;
+        font-size: px-to-vh(18);
+        line-height: px-to-vh(75);
+        letter-spacing: px-to-vh(0.9);
         text-align: center;
         &::after {
           content: "";
@@ -318,7 +372,7 @@ a {
           top: 48%;
           left: -7%;
           right: -7%;
-          height: 5px;
+          height: px-to-vh(5);
           background-color: var(--dark-pink);
           transform: translateY(-50%) scaleX(0);
           transition: transform 0.3s ease;
@@ -337,24 +391,23 @@ a {
     @media (orientation: portrait) {
       position: fixed;
       top: 0;
-      right: 35px;
-      bottom: 50%;
+      right: 7vw;
+      bottom: 61%;
       display: flex;
-      flex-direction: column;
       align-items: flex-end;
       justify-content: center;
       z-index: 1;
       &__item {
         position: relative;
-        width: 30px;
-        height: 30px;
+        width: px-to-vh(30);
+        height: px-to-vh(30);
         &::after {
           content: "";
           position: absolute;
           top: 50%;
           left: 50%;
-          width: 6px;
-          height: 6px;
+          width: px-to-vh(6);
+          height: px-to-vh(6);
           border-radius: 50%;
           transform: translate(-50%, -50%);
           background-color: #3d3d3d;
@@ -395,6 +448,14 @@ a {
     &.active {
       transform: translateY(0);
     }
+
+    @media (orientation: portrait) {
+      transform: translateY(0);
+      transform: translateX(100%);
+      &.active {
+        transform: translateX(0);
+      }
+    }
   }
 }
 .socials {
@@ -404,6 +465,16 @@ a {
   justify-content: flex-end;
   padding-left: px-to-vw(150);
   padding-bottom: px-to-vw(130);
+
+  @media (orientation: portrait) {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    flex-direction: row;
+    padding-left: 10vw;
+    padding-bottom: px-to-vh(65);
+  }
+
   .social-icon {
     display: flex;
     justify-content: center;
@@ -421,9 +492,11 @@ a {
     }
 
     @media (orientation: portrait) {
-      display: none;
+      margin-top: 0;
+      margin-right: px-to-vh(18);
+      width: px-to-vh(40);
+      height: px-to-vh(40);
     }
   }
 }
 </style>
-

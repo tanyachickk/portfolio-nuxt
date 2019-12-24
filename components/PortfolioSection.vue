@@ -15,62 +15,19 @@
 
 <script>
 import works from "~/data/works";
+import SliderMx from "~/mixins/SliderMx.js";
 import PatternText from "~/components/PatternText.vue";
 
 export default {
   name: "PortfolioSection",
+  mixins: [SliderMx],
   components: {
     PatternText
   },
   data() {
     return {
-      works,
-      activeIndex: 0,
-      sliderElements: [],
-      observer: null
+      works
     };
-  },
-  methods: {
-    goPrevious() {
-      if (this.activeIndex > 0) {
-        this.sliderElements[this.activeIndex - 1].scrollIntoView({
-          block: "nearest",
-          inline: "start",
-          behavior: "smooth"
-        });
-      }
-    },
-    goNext() {
-      if (this.activeIndex < this.sliderElements.length - 1) {
-        this.sliderElements[this.activeIndex + 1].scrollIntoView({
-          block: "nearest",
-          inline: "start",
-          behavior: "smooth"
-        });
-      }
-    },
-    handleIntersect(entries) {
-      const entry = entries.find(e => e.isIntersecting);
-      if (entry) {
-        const index = this.sliderElements.findIndex(e => e === entry.target);
-        this.activeIndex = index;
-      }
-    }
-  },
-  mounted() {
-    this.sliderElements = [...this.$refs.carousel.children];
-    this.observer = new IntersectionObserver(this.handleIntersect, {
-      root: this.$refs.carousel,
-      threshold: 0.5
-    });
-    this.sliderElements.forEach(el => {
-      this.observer.observe(el);
-    });
-  },
-  beforeDestroy() {
-    this.sliderElements.forEach(el => {
-      this.observer.unobserve(el);
-    });
   }
 };
 </script>
@@ -121,6 +78,10 @@ export default {
     margin-left: px-to-vw(85);
     margin-bottom: px-to-vw(55);
     font-size: px-to-vw(72);
+
+    @media (orientation: portrait) {
+      font-size: px-to-vh(40);
+    }
   }
 
   &__description {

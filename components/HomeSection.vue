@@ -60,6 +60,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~@/styles/functions.scss";
+
 .home-section {
   display: flex;
   flex-direction: column;
@@ -87,9 +89,9 @@ export default {
       background-size: contain;
 
       @media (orientation: portrait) {
-        top: 0;
+        top: -6vh;
         left: auto;
-        right: 0;
+        right: -10vh;
         width: 25vh;
         height: 30vh;
       }
@@ -103,9 +105,10 @@ export default {
 
       @media (orientation: portrait) {
         top: auto;
-        bottom: 0;
-        width: 20vh;
-        height: 25vh;
+        right: -2vh;
+        bottom: -10vh;
+        width: 25vh;
+        height: 30vh;
         transform: translate(0, 40%);
       }
     }
@@ -117,6 +120,7 @@ export default {
     @media (orientation: portrait) {
       margin: 0 10vw;
       font-size: 10vw;
+      transform: translateY(px-to-vh(-50));
     }
     @media (orientation: portrait) and (min-width: 760px) {
       font-size: 76px;

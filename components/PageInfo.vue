@@ -1,20 +1,22 @@
 <template lang="pug">
   .page-info
-    .page-info__decorator &#60;title&#62;
-    .page-info__slider(:style="`width: ${100*sections.length}%; transform: translateX(-${currentSectionIndex*100/sections.length}%)`")
+    .page-info__slider(ref="carousel")
       .page-info__content(
         v-for="(section, index) in sections"
-        :style="`width: ${100/sections.length}%`"
       )
         .page-info__title(v-for="line in section.title") {{ line }}
+    .page-info__decorator &#60;title&#62;
     .page-info__action
       .page-info__action-line
       .page-info__action-text Contact me
 </template>
 
 <script>
+import SliderMx from "~/mixins/SliderMx.js";
+
 export default {
   name: "PageInfo",
+  mixins: [SliderMx],
   props: {
     sections: {
       type: Array,
@@ -24,6 +26,14 @@ export default {
       type: Number,
       default: 0
     }
+  },
+  watch: {
+    currentSectionIndex(value) {
+      this.goTo(value);
+    },
+    activeIndex(value) {
+      this.$emit("change-index", value);
+    }
   }
 };
 </script>
@@ -32,12 +42,16 @@ export default {
 @import "~@/styles/functions.scss";
 
 .page-info {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
   width: 100%;
   &__decorator {
+    position: absolute;
+    top: 0;
+    left: 0;
     font-family: "Courier";
     font-size: px-to-vw(18);
     line-height: px-to-vw(86);
@@ -45,7 +59,17 @@ export default {
   }
   &__slider {
     display: flex;
-    transition: transform 0.3s ease;
+    width: 100%;
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+  }
+  &__content {
+    flex-shrink: 0;
+    flex-grow: 0;
+    width: 100%;
+    padding-top: px-to-vw(86);
+    padding-bottom: px-to-vw(86);
+    scroll-snap-align: start;
   }
   &__title {
     color: white;
@@ -56,6 +80,9 @@ export default {
     letter-spacing: px-to-vw(3.6);
   }
   &__action {
+    position: absolute;
+    left: 0;
+    bottom: 0;
     display: flex;
     align-items: center;
     &-line {
@@ -76,25 +103,30 @@ export default {
     $left: 10vw;
     &__decorator {
       padding-left: $left;
-      font-size: 14px;
-      line-height: 86px;
+      font-size: px-to-vh(14);
+      line-height: px-to-vh(86);
+    }
+    &__content {
+      padding-top: px-to-vh(86);
+      padding-bottom: px-to-vh(86);
+      scroll-snap-align: start;
     }
     &__title {
       padding-left: $left;
-      font-size: 36px;
-      line-height: 48px;
-      letter-spacing: 1.8px;
+      font-size: px-to-vh(36);
+      line-height: px-to-vh(48);
+      letter-spacing: px-to-vh(1.8);
     }
     &__action {
       padding-left: $left;
       &-line {
-        width: 16px;
+        width: px-to-vh(16);
         height: 1px;
-        margin-right: 16px;
+        margin-right: px-to-vh(16);
       }
       &-text {
-        font-size: 14px;
-        line-height: 86px;
+        font-size: px-to-vh(14);
+        line-height: px-to-vh(86);
       }
     }
   }

@@ -27,5 +27,13 @@ export default {
   letter-spacing: px-to-vw(7.2);
   line-height: px-to-vw(25);
   text-decoration: none;
+
+  @media (orientation: portrait) {
+    width: px-to-vh(46);
+    height: px-to-vh(46);
+    font-size: px-to-vh(10);
+    letter-spacing: px-to-vh(3.6);
+    line-height: px-to-vh(14);
+  }
 }
 </style>

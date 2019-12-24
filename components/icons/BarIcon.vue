@@ -23,11 +23,11 @@ export default {
   props: {
     width: {
       type: Number | String,
-      default: 24
+      default: "1.5em"
     },
     height: {
       type: Number | String,
-      default: 24
+      default: "1.5em"
     },
     color: {
       type: String,

@@ -85,12 +85,28 @@ export default {
   background-size: cover;
   height: 100%;
   scroll-snap-type: y mandatory;
+  overflow-x: hidden;
   overflow-y: auto;
+
+  @media (orientation: portrait) {
+    flex-direction: row;
+    width: auto;
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
 }
 .about {
   padding: px-to-vw(20) px-to-vw(85);
   border-bottom: 1px solid rgba($color: #3b3b3b, $alpha: 0.2);
   scroll-snap-align: start;
+
+  @media (orientation: portrait) {
+    flex-shrink: 0;
+    width: 100vw;
+    padding: px-to-vh(30) px-to-vh(40);
+  }
+
   &__title {
     color: var(--primary-pink);
     font-family: "Gilroy";
@@ -99,10 +115,21 @@ export default {
     line-height: px-to-vw(75);
     text-transform: uppercase;
     letter-spacing: px-to-vw(3.6);
+
+    @media (orientation: portrait) {
+      font-size: px-to-vh(14);
+      line-height: px-to-vh(75);
+      letter-spacing: px-to-vh(2.8);
+    }
   }
   &__date {
     margin-top: px-to-vw(10);
     margin-bottom: px-to-vw(25);
+
+    @media (orientation: portrait) {
+      margin-top: px-to-vh(10);
+      margin-bottom: px-to-vh(40);
+    }
   }
 }
 </style>

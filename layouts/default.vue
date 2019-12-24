@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <nuxt />
-  </div>
+  <nuxt />
 </template>
 
 <style>
@@ -24,4 +22,3 @@ html {
   margin: 0;
 }
 </style>
-

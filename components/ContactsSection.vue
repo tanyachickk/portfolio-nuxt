@@ -68,6 +68,10 @@ export default {
     height: 70%;
     background: rgb(23, 23, 23);
     border-bottom: 1px solid rgba($color: #3b3b3b, $alpha: 0.2);
+
+    @media (orientation: portrait) {
+      display: none;
+    }
   }
   &__text {
     position: relative;
@@ -80,6 +84,11 @@ export default {
     font-family: "Courier", monospace;
     font-size: 18px;
     font-weight: 800;
+
+    @media (orientation: portrait) {
+      flex-grow: 1;
+      height: auto;
+    }
   }
   .section-pattern {
     position: absolute;
@@ -99,16 +108,34 @@ export default {
     bottom: 0;
     padding: $contacts-padding;
 
+    @media (orientation: portrait) {
+      padding: 10vw;
+    }
+
     &__title {
       margin-bottom: px-to-vw(28);
+
+      @media (orientation: portrait) {
+        margin-bottom: px-to-vw(10);
+      }
     }
 
     &__link {
       margin-left: px-to-vw(10);
     }
 
+    &__text {
+      @media (orientation: portrait) {
+        line-height: px-to-vh(25);
+      }
+    }
+
     &__secondary-text {
       margin-top: px-to-vw(26);
+
+      @media (orientation: portrait) {
+        margin-top: px-to-vh(20);
+      }
     }
   }
 }
