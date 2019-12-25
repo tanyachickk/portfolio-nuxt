@@ -82,8 +82,8 @@ export default {
     position: absolute;
     transition: translate 0.2s ease;
     &:nth-child(1) {
-      top: 2vh;
-      left: 2vh;
+      top: 8%;
+      left: 2%;
       width: 15vw;
       height: 20vw;
       background-size: contain;
@@ -97,7 +97,7 @@ export default {
       }
     }
     &:nth-child(2) {
-      top: 23%;
+      top: 30%;
       right: -8%;
       width: 15vw;
       height: 20vw;
@@ -114,8 +114,10 @@ export default {
     }
   }
   &__title {
+    position: relative;
     margin: 0 2.2vw 5vw;
     font-size: 4vw;
+    z-index: 1;
 
     @media (orientation: portrait) {
       margin: 0 10vw;
