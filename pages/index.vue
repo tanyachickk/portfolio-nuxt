@@ -53,16 +53,6 @@ import LinkedinIcon from "~/components/icons/LinkedinIcon.vue";
 import GithubIcon from "~/components/icons/GithubIcon.vue";
 import InstIcon from "~/components/icons/InstIcon.vue";
 
-function debounce(f, ms) {
-  let isCooldown = false;
-  return function() {
-    if (isCooldown) return;
-    f.apply(this, arguments);
-    isCooldown = true;
-    setTimeout(() => (isCooldown = false), ms);
-  };
-}
-
 export default {
   name: "Main",
   components: {

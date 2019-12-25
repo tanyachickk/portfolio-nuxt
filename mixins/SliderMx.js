@@ -8,6 +8,14 @@ export default {
       sliderElements: []
     };
   },
+  computed: {
+    isPrevDisabled() {
+      return this.activeIndex === 0;
+    },
+    isNextDisabled() {
+      return this.activeIndex === this.sliderElements.length - 1;
+    }
+  },
   methods: {
     goPrevious() {
       if (this.activeIndex > 0) {
@@ -16,6 +24,7 @@ export default {
           inline: "start",
           behavior: "smooth"
         });
+        this.activeIndex--;
       }
     },
     goTo(index) {
@@ -39,6 +48,7 @@ export default {
           inline: "start",
           behavior: "smooth"
         });
+        this.activeIndex++;
       }
     },
     handleIntersect(entries) {
