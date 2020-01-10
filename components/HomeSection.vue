@@ -10,6 +10,7 @@
 
 <script>
 import Parallax from "parallax-js";
+import { debounce } from "throttle-debounce";
 import PatternText from "@/components/PatternText.vue";
 import Image1 from "@/assets/images/Iphone_1.png";
 import Image2 from "@/assets/images/Iphone_2.png";
@@ -21,6 +22,7 @@ export default {
   },
   data() {
     return {
+      debouncedResize: debounce(100, this.updateParallax),
       parallaxInstance: null,
       images: [Image1, Image2],
       text: ["And I'm", "a frontend", "developer."],
@@ -52,11 +54,16 @@ export default {
       this.lFollowY = (5 * lMouseY) / 100;
       this.x += this.lFollowX - this.x;
       this.y += this.lFollowY - this.y;
+    },
+    updateParallax() {
+      this.parallaxInstance.destroy();
+      this.parallaxInstance = new Parallax(this.$refs.parallaxScene, {});
     }
   },
   created() {
     if (process.client) {
       document.addEventListener("mousemove", this.onMouseMove);
+      window.addEventListener("resize", this.debouncedResize);
     }
   },
   mounted() {
@@ -65,8 +72,9 @@ export default {
   beforeDestroy() {
     if (process.client) {
       document.removeEventListener("mousemove", this.onMouseMove);
+      window.removeEventListener("resize", this.debouncedResize);
+      this.parallaxInstance.destroy();
     }
-    this.parallaxInstance.destroy();
   }
 };
 </script>
@@ -128,11 +136,10 @@ export default {
 
       @media (orientation: portrait) {
         top: auto;
-        right: -2vh;
-        bottom: -10vh;
+        right: -5vh;
+        bottom: -7vh;
         width: 25vh;
         height: 30vh;
-        transform: translate(0, 40%);
       }
     }
   }
@@ -147,8 +154,8 @@ export default {
       font-size: 10vw;
       transform: translateY(px-to-vh(-50));
     }
-    @media (orientation: portrait) and (min-width: 760px) {
-      font-size: 76px;
+    @media (orientation: portrait) and (min-width: 500px) {
+      font-size: 50px;
     }
   }
 }
