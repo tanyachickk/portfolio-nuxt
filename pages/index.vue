@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import OrientationMx from "~/mixins/OrientationMx";
 import Logo from "~/components/MainPageLogo.vue";
 import HomeSection from "~/components/HomeSection.vue";
 import AboutSection from "~/components/AboutSection.vue";
@@ -55,6 +56,7 @@ import InstIcon from "~/components/icons/InstIcon.vue";
 
 export default {
   name: "Main",
+  mixins: [OrientationMx],
   components: {
     Logo,
     PageInfo,

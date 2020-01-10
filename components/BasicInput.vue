@@ -10,21 +10,9 @@
 <script>
 export default {
   props: {
-    value: {
-      type: String,
-      default: ""
-    },
-    required: {
-      type: Boolean,
-      default: false
-    },
     disabled: {
       type: Boolean,
       default: false
-    },
-    type: {
-      type: String,
-      default: "text"
     }
   },
   computed: {

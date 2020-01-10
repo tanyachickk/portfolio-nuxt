@@ -1,44 +1,65 @@
 [
   {
     "title": ["Reminders", "Clone"],
-    "description": "Some description",
+    "description": "A custom built clone of Apple's default Reminders app written using React, React Hooks, Styled-components and Firebase",
     "technologies": ["React", "React Hooks", "Firebase", "Styled-components"],
-    "img": "",
-    "link": ""
+    "img": {
+      "src": "/reminders-mockup.png",
+      "vertical": false
+    },
+    "deploy": "https://react-reminder.firebaseapp.com/",
+    "github": "https://github.com/tanyachickk/react-reminder"
   },
   {
     "title": ["LS Course", "Portfolio"],
-    "description": "Some description",
+    "description": "Portfolio landing page developed as part of mentoring at LoftSchool written using Pug, PostCSS and VueJS",
     "technologies": ["Pug", "PostCSS", "VueJS"],
-    "img": "",
-    "link": ""
+    "img": {
+      "src": "/ls-portfolio-mockup.png",
+      "vertical": false
+    },
+    "deploy": "https://tanyachickk.github.io/loftschool-course",
+    "github": "https://github.com/tanyachickk/loftschool-course"
   },
   {
     "title": ["LS Course", "Admin"],
-    "description": "Some description",
+    "description": "Admin panel for managing content on a landing page developed as part of mentoring at LoftSchool written using Pug, PostCSS and VueJS",
     "technologies": ["Pug", "PostCSS", "VueJS"],
-    "img": "",
-    "link": ""
+    "img": {
+      "src": "/ls-admin-mockup.png",
+      "vertical": false
+    },
+    "deploy": "https://tanyachickk.github.io/loftschool-course/admin",
+    "github": "https://github.com/tanyachickk/loftschool-course/tree/master/src/admin"
   },
   {
     "title": ["VK Mobile", "Client"],
-    "description": "Some description",
+    "description": "A custom built partial clone of VK mobile app written using React Native and Styled-components",
     "technologies": ["React Native", "MobX", "Styled-components"],
-    "img": "",
-    "link": ""
+    "img": {
+      "src": "/vk-mockup.png",
+      "vertical": true
+    },
+    "github": "https://github.com/tanyachickk/vk-mobile"
   },
   {
     "title": ["Medicine", "Polls"],
-    "description": "Some description",
+    "description": "Admin dashboard for creating targeted polls and viewing statistics developed as part of Leaders of Digital hackathon",
     "technologies": ["VueJS", "TypeScript", "Pug", "SCSS"],
-    "img": "",
-    "link": ""
+    "img": {
+      "src": "/med-mockup.png",
+      "vertical": false
+    },
+    "github": "https://github.com/tanyachickk/icare_frontend"
   },
   {
     "title": ["Control", "Admin"],
-    "description": "Some description",
+    "description": "Admin dashboard for managing work processes of the main control department of Moscow developed as part of Urban.tech Challenge hackathon",
     "technologies": ["VueJS", "TypeScript", "Pug", "SCSS"],
-    "img": "",
-    "link": ""
+    "img": {
+      "src": "/control-mockup.png",
+      "vertical": false
+    },
+    "github": "https://github.com/tanyachickk/control"
   }
 ]

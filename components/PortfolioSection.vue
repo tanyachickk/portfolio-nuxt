@@ -16,16 +16,22 @@
           slide.slide(v-for="(work, index) in works" :key="index")
             pattern-text.slide__title(:text="work.title")
             p.slide__description {{ work.description }}
-            p.secondary.slide__technologies {{ work.technologies.join(', ') }}
+            template(v-if="isLandscapeOrientation")
+              a.slide__link(v-if="work.deploy" target="_blank" :href="work.deploy") {{ work.deploy }}
+              a.slide__link(v-if="work.github" target="_blank" :href="work.github") {{ work.github }}
+            .slide__space
+            img.slide__image(:src="work.img.src" :class="{ vertical: work.img.vertical }")
 </template>
 
 <script>
 import works from "~/data/works";
+import OrientationMx from "~/mixins/OrientationMx.js";
 import PatternText from "~/components/PatternText.vue";
 import ArrowIcon from "~/components/icons/ArrowIcon.vue";
 
 export default {
   name: "PortfolioSection",
+  mixins: [OrientationMx],
   components: {
     PatternText,
     ArrowIcon
@@ -177,9 +183,15 @@ export default {
   }
 }
 .slide {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 100px);
+  border: 1px solid transparent;
   overflow: hidden;
 
   &__title {
+    flex-shrink: 0;
     margin-left: px-to-vw(85);
     margin-bottom: px-to-vw(55);
     font-size: px-to-vw(72);
@@ -187,6 +199,7 @@ export default {
     @media (orientation: portrait) {
       font-size: px-to-vh(40);
       margin-top: px-to-vh(40);
+      margin-bottom: px-to-vh(40);
       margin-left: 10vw;
     }
   }
@@ -201,12 +214,40 @@ export default {
     }
   }
 
-  &__technologies {
+  &__link {
+    line-height: 1.3;
     margin-left: px-to-vw(85);
     margin-right: px-to-vw(70);
+    margin-bottom: px-to-vw(20);
+    word-break: break-all;
 
     @media (orientation: portrait) {
       margin-left: 10vw;
+    }
+  }
+
+  &__space {
+    flex-shrink: 0;
+    flex-grow: 1;
+
+    @media (orientation: portrait) {
+      flex-grow: 0;
+      height: px-to-vw(50);
+    }
+  }
+
+  &__image {
+    width: 140%;
+
+    @media (orientation: portrait) {
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    &.vertical {
+      height: 30vh;
+      width: auto;
+      margin-left: auto;
     }
   }
 }

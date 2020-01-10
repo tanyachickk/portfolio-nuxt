@@ -14,6 +14,7 @@ export default {
     }
   },
   mounted() {
+    this.onResize();
     window.addEventListener("resize", this.debouncedResizeHandler, false);
   },
   beforeDestroy() {

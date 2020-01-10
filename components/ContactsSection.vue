@@ -2,12 +2,13 @@
   section.contacts-section
     .contacts-section__form
       .section-pattern
-      .section-content.contact-form
-        h2.contact-form__title Write me
-        basic-input.contact-form__input(placeholder="Name*")
-        basic-input.contact-form__input(placeholder="E-mail*")
-        basic-textarea.contact-form__textarea(v-model="formData.message" placeholder="Message*" rows="1")
-        basic-button Send
+      h2.accent.contacts-section__title Write me
+      form.section-content.contact-form(v-if="!formSend" @submit.prevent="sendEmail")
+        basic-input.contact-form__input(v-model="formData.name" name="user_name"  placeholder="Name*" type="text" :required="true")
+        basic-input.contact-form__input(v-model="formData.email" name="user_email" placeholder="E-mail*" type="email" :required="true")
+        basic-textarea.contact-form__textarea(v-model="formData.message" name="message" :required="true" placeholder="Message*" rows="1")
+        basic-button(type="submit") Send
+      p(v-else) Message was send successfully
     .contacts-section__text
       .section-pattern
       .section-content
@@ -18,6 +19,7 @@
 </template>
 
 <script>
+import emailjs from "emailjs-com";
 import BasicInput from "@/components/BasicInput.vue";
 import BasicTextarea from "@/components/BasicTextarea.vue";
 import BasicButton from "@/components/BasicButton.vue";
@@ -31,6 +33,7 @@ export default {
   },
   data() {
     return {
+      formSend: false,
       contacts: [
         {
           title: "E-mail:",
@@ -44,9 +47,31 @@ export default {
         }
       ],
       formData: {
+        name: "",
+        email: "",
         message: ""
       }
     };
+  },
+  methods: {
+    sendEmail() {
+      emailjs
+        .send(
+          process.env.VUE_APP_EMAIL_SERVICE_ID,
+          process.env.VUE_APP_EMAIL_TRMPLATE_ID,
+          this.formData,
+          process.env.VUE_APP_EMAIL_USER_ID
+        )
+        .then(
+          response => {
+            console.log("SUCCESS!", response.status, response.text);
+          },
+          err => {
+            console.log("FAILED...", err);
+          }
+        );
+      this.formSend = true;
+    }
   }
 };
 </script>
@@ -62,6 +87,11 @@ export default {
   height: 100%;
 
   $contacts-padding: px-to-vw(80) px-to-vw(85);
+
+  &__title {
+    margin-bottom: px-to-vw(38);
+  }
+
   &__form {
     position: relative;
     padding: $contacts-padding;
@@ -102,7 +132,7 @@ export default {
   }
   .section-content {
     position: absolute;
-    top: 0;
+    top: px-to-vw(66);
     left: 0;
     right: 0;
     bottom: 0;
@@ -140,9 +170,6 @@ export default {
   }
 }
 .contact-form {
-  &__title {
-    margin-bottom: px-to-vw(38);
-  }
   &__input {
     margin-bottom: px-to-vw(18);
   }

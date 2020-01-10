@@ -1,3 +1,5 @@
+const env = require("dotenv").config();
+
 module.exports = {
   /*
    ** Headers of the page
@@ -33,5 +35,6 @@ module.exports = {
       }
     }
   },
+  env: env.parsed,
   plugins: [{ src: "~/plugins/vue-carousel", ssr: false }]
 };
