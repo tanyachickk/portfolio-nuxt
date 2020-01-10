@@ -1,12 +1,18 @@
 <template lang="pug">
   section.home-section
-    img.home-section__phone(:style="firstImageStyle" src="~@/assets/images/Iphone_1.png")
-    img.home-section__phone(:style="secondImageStyle" src="~@/assets/images/Iphone_2.png")
+    .home-section__images(ref="parallaxScene")
+      .home-section__image-wrapper(data-depth="0.3")
+        img.home-section__phone.first(:src="images[0]")
+      .home-section__image-wrapper(data-depth="-0.25")
+        img.home-section__phone.second(:src="images[1]")
     pattern-text.home-section__title(:text="text")
 </template>
 
 <script>
+import Parallax from "parallax-js";
 import PatternText from "@/components/PatternText.vue";
+import Image1 from "@/assets/images/Iphone_1.png";
+import Image2 from "@/assets/images/Iphone_2.png";
 
 export default {
   name: "HomeSection",
@@ -15,6 +21,8 @@ export default {
   },
   data() {
     return {
+      parallaxInstance: null,
+      images: [Image1, Image2],
       text: ["And I'm", "a frontend", "developer."],
       lFollowX: 0,
       lFollowY: 0,
@@ -51,10 +59,14 @@ export default {
       document.addEventListener("mousemove", this.onMouseMove);
     }
   },
+  mounted() {
+    this.parallaxInstance = new Parallax(this.$refs.parallaxScene, {});
+  },
   beforeDestroy() {
     if (process.client) {
       document.removeEventListener("mousemove", this.onMouseMove);
     }
+    this.parallaxInstance.destroy();
   }
 };
 </script>
@@ -78,10 +90,21 @@ export default {
     justify-content: center;
   }
 
+  &__images {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__image-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
   &__phone {
     position: absolute;
-    transition: translate 0.2s ease;
-    &:nth-child(1) {
+    &.first {
       top: 8%;
       left: 2%;
       width: 15vw;
@@ -96,7 +119,7 @@ export default {
         height: 30vh;
       }
     }
-    &:nth-child(2) {
+    &.second {
       top: 30%;
       right: -8%;
       width: 15vw;

@@ -40,6 +40,7 @@
 </template>
 
 <script>
+// import { throttle } from "throttle-debounce";
 import OrientationMx from "~/mixins/OrientationMx";
 import Logo from "~/components/MainPageLogo.vue";
 import HomeSection from "~/components/HomeSection.vue";
@@ -124,10 +125,19 @@ export default {
         this.currentSectionIndex--;
       }
     },
-    onMouseWheel({ deltaY }) {
-      if (deltaY > 0) {
+    onMouseWheel(event) {
+      console.log(event);
+      if (
+        event.path.find(
+          elem => elem.classList && elem.classList.contains("about-section")
+        )
+      ) {
+        console.log("!!!!");
+        return;
+      }
+      if (event.deltaY > 0) {
         this.goToNextSection();
-      } else if (deltaY < 0) {
+      } else if (event.deltaY < 0) {
         this.goToPrevSection();
       }
     },
@@ -141,7 +151,10 @@ export default {
   },
   created() {
     if (process.client) {
-      // document.addEventListener('wheel', debounce(this.onMouseWheel, 500));
+      // document.addEventListener(
+      //   "wheel",
+      //   throttle(50, false, this.onMouseWheel, true)
+      // );
       document.addEventListener("keydown", this.onKeyDown);
     }
   },
@@ -319,6 +332,11 @@ a {
       color: var(--lighter-gray);
       transition: color 0.3s ease;
       cursor: pointer;
+
+      &:hover {
+        color: rgba(white, 0.5);
+      }
+
       &.active {
         color: white;
         cursor: default;

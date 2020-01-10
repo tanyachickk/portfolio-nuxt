@@ -3,7 +3,7 @@
     .contacts-section__form
       .section-pattern
       h2.accent.contacts-section__title Write me
-      form.section-content.contact-form(v-if="!formSend" @submit.prevent="sendEmail")
+      form.contact-form(v-if="!formSend" @submit.prevent="sendEmail")
         basic-input.contact-form__input(v-model="formData.name" name="user_name"  placeholder="Name*" type="text" :required="true")
         basic-input.contact-form__input(v-model="formData.email" name="user_email" placeholder="E-mail*" type="email" :required="true")
         basic-textarea.contact-form__textarea(v-model="formData.message" name="message" :required="true" placeholder="Message*" rows="1")
@@ -132,7 +132,7 @@ export default {
   }
   .section-content {
     position: absolute;
-    top: px-to-vw(66);
+    top: 0;
     left: 0;
     right: 0;
     bottom: 0;

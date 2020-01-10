@@ -94,7 +94,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: px-to-vw(80) px-to-vw(70) px-to-vw(60) px-to-vw(85);
+    padding: px-to-vw(50) px-to-vw(70) px-to-vw(40) px-to-vw(85);
     color: white;
     z-index: 1;
 
@@ -194,7 +194,7 @@ export default {
     flex-shrink: 0;
     margin-left: px-to-vw(85);
     margin-bottom: px-to-vw(55);
-    font-size: px-to-vw(72);
+    font-size: px-to-vw(64);
 
     @media (orientation: portrait) {
       font-size: px-to-vh(40);
@@ -218,8 +218,13 @@ export default {
     line-height: 1.3;
     margin-left: px-to-vw(85);
     margin-right: px-to-vw(70);
-    margin-bottom: px-to-vw(20);
+    margin-bottom: px-to-vw(10);
+    font-size: px-to-vw(16);
     word-break: break-all;
+
+    &:last-of-type {
+      margin-bottom: px-to-vw(40);
+    }
 
     @media (orientation: portrait) {
       margin-left: 10vw;
@@ -237,7 +242,9 @@ export default {
   }
 
   &__image {
-    width: 140%;
+    width: px-to-vh(400);
+    margin-left: px-to-vw(150);
+    margin-bottom: 4vh;
 
     @media (orientation: portrait) {
       width: 80%;
@@ -245,7 +252,7 @@ export default {
     }
 
     &.vertical {
-      height: 30vh;
+      height: 35vh;
       width: auto;
       margin-left: auto;
     }
