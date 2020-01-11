@@ -500,7 +500,7 @@ a {
     right: 0;
     bottom: 0;
     transform: translate3d(0, 100%, 0);
-    transition: transform 0.75s ease-out;
+    transition: transform 0.75s ease;
     overflow: hidden;
     &.active {
       transform: translate3d(0, 0, 0);

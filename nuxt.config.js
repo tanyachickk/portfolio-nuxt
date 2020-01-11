@@ -1,6 +1,7 @@
 const env = require("dotenv").config();
 
 module.exports = {
+  cache: false,
   /*
    ** Headers of the page
    */
@@ -33,6 +34,10 @@ module.exports = {
           exclude: /(node_modules)/
         });
       }
+    },
+    filenames: {
+      app: ({ isDev }) => (isDev ? "[name].js" : "[name][contenthash].js"),
+      chunk: ({ isDev }) => (isDev ? "[name].js" : "[name][contenthash].js")
     }
   },
   env: env.parsed,
