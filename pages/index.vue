@@ -452,15 +452,15 @@ a {
     left: 0;
     right: 0;
     bottom: 0;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
+    transform: translate3d(0, 100%, 0);
+    transition: transform 0.75s ease-out;
     overflow: hidden;
     &.active {
-      transform: translateY(0);
+      transform: translate3d(0, 0, 0);
     }
 
     @media (orientation: portrait) {
-      transform: translateY(0);
+      transform: translate3d(0, 0, 0);
       transform: translateX(100%);
       &.active {
         transform: translateX(0);

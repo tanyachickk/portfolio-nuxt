@@ -30,7 +30,7 @@ export default {
     return {
       carouselOptions: {
         perPage: 1,
-        speed: 300,
+        speed: 700,
         paginationEnabled: false
       }
     };
@@ -66,6 +66,8 @@ export default {
     width: 100%;
     padding-top: px-to-vw(86);
     padding-bottom: px-to-vw(86);
+    overflow: hidden;
+    border: 1px solid transparent;
   }
   &__title {
     color: white;
