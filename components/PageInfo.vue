@@ -1,14 +1,20 @@
 <template lang="pug">
   no-ssr
-    .page-info
-      carousel.page-info__slider(v-bind="carouselOptions" :value="activeIndex" @page-change="$emit('change', $event)")
+    transition-group.page-info(name="slide-left")
+      carousel.page-info__slider(
+        v-if="isShowAnimatedElements"
+        key="title"
+        v-bind="carouselOptions"
+        :value="activeIndex"
+        @page-change="$emit('change', $event)"
+      )
         slide.page-info__content(
           v-for="(section, index) in sections"
           :key="index"
         )
           .page-info__title(v-for="line in section.title") {{ line }}
-      .page-info__decorator &#60;title&#62;
-      .page-info__action
+      .page-info__decorator(v-if="isShowAnimatedElements" key="decorator") &#60;title&#62;
+      .page-info__action(v-if="isShowAnimatedElements" key="action")
         .page-info__action-line
         .page-info__action-text Contact me
 </template>
@@ -28,12 +34,18 @@ export default {
   },
   data() {
     return {
+      isShowAnimatedElements: false,
       carouselOptions: {
         perPage: 1,
         speed: 700,
         paginationEnabled: false
       }
     };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.isShowAnimatedElements = true;
+    }, 500);
   }
 };
 </script>
@@ -52,13 +64,16 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
     font-family: "Courier";
     font-size: px-to-vw(18);
     line-height: px-to-vw(86);
     color: var(--primary-pink);
+    transition: transform 700ms ease 50ms;
   }
   &__slider {
     width: 100%;
+    transition: transform 700ms ease 250ms;
   }
   &__content {
     flex-shrink: 0;
@@ -81,8 +96,10 @@ export default {
     position: absolute;
     left: 0;
     bottom: 0;
+    width: 100%;
     display: flex;
     align-items: center;
+    transition: transform 600ms ease 450ms;
     &-line {
       width: px-to-vw(35);
       height: px-to-vw(2);
@@ -127,6 +144,13 @@ export default {
         line-height: px-to-vh(86);
       }
     }
+  }
+}
+
+.slide-left {
+  &-enter,
+  &-leave-to {
+    transform: translateX(100%);
   }
 }
 </style>

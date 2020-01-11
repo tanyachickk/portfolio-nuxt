@@ -1,23 +1,27 @@
 <template lang="pug">
   .main
     .info
-      page-info(:sections="sections" :active-index="currentSectionIndex" @change="changeSection($event)")
+      page-info(
+        :sections="sections"
+        :active-index="currentSectionIndex"
+        @change="changeSection($event)"
+      )
     .content
       .section-content(
         v-for="(info, index) in sections"
         :class="index <= currentSectionIndex && 'active'"
       )
         component.page-section(:is="info.section")
-    .socials(v-if="isShowSocials")
-      a.social-icon(href="https://vk.com/tanyachickk" target="_blank")
-        vk-icon(width="38%" height="32%")
-      a.social-icon(href="https://www.linkedin.com/in/tatiana-kurochkina-217b24163/" target="_blank")
-        linkedin-icon(width="32%" height="32%")
-      a.social-icon(href="https://github.com/tanyachickk" target="_blank")
-        github-icon(width="32%" height="32%")
-      a.social-icon(href="https://www.instagram.com/tanyachickk/" target="_blank")
-        inst-icon(width="32%" height="32%")
-    
+    transition-group.socials(name="slide-up" v-if="isShowSocials")
+      a.social-icon(
+        v-if="isShowAnimatedElements"
+        v-for="(item, index) in socials"
+        :key="item.name"
+        :href="item.link"
+        :style="`transition: transform 600ms ease ${index * 150}ms`"
+        target="_blank"
+      )
+        conponent(:is="item.icon" :width="item.iconWidth" :height="item.iconHeight")
     .burger-menu(@click="isShowMenu = true")
       bar-icon
     .navigation
@@ -27,12 +31,15 @@
           :class="index === currentSectionIndex && 'active'"
           @click="changeSection(index)"
         )
-      .menu(:class="isShowMenu && 'active'")
-          .menu__close(@click="isShowMenu = false")
+      transition-group.menu(name="slide-right" :class="isShowMenu && 'active'")
+          .menu__close(key="close" @click="isShowMenu = false")
             close-icon
           .menu__link(
+            v-if="isShowAnimatedElements"
             v-for="(section, index) in sections"
+            :key="section"
             :class="index === currentSectionIndex && 'active'"
+            :style="`transition: transform 600ms ease ${index * 150}ms`"
             @click="changeSection(index)"
           ) {{ section.link }}
     .page-logo
@@ -76,6 +83,7 @@ export default {
     return {
       isLandingOrientation: true,
       isShowMenu: false,
+      isShowAnimatedElements: false,
       resizeTimeout: null,
       currentSectionIndex: 0,
       sections: [
@@ -99,6 +107,36 @@ export default {
           title: ["My", "contacts"],
           section: ContactsSection
         }
+      ],
+      socials: [
+        {
+          name: "vk",
+          link: "https://vk.com/tanyachickk",
+          icon: "vk-icon",
+          iconWidth: "38%",
+          iconHeight: "32%"
+        },
+        {
+          name: "linkedin",
+          link: "https://www.linkedin.com/in/tatiana-kurochkina-217b24163/",
+          icon: "linkedin-icon",
+          iconWidth: "32%",
+          iconHeight: "32%"
+        },
+        {
+          name: "github",
+          link: "https://github.com/tanyachickk",
+          icon: "github-icon",
+          iconWidth: "32%",
+          iconHeight: "32%"
+        },
+        {
+          name: "inst",
+          link: "https://www.instagram.com/tanyachickk/",
+          icon: "inst-icon",
+          iconWidth: "32%",
+          iconHeight: "32%"
+        }
       ]
     };
   },
@@ -107,7 +145,11 @@ export default {
       return this.sections[this.currentSectionIndex];
     },
     isShowSocials() {
-      return this.currentSectionIndex === 0 || this.currentSectionIndex === 3;
+      return (
+        this.isLandingOrientation ||
+        this.currentSectionIndex === 0 ||
+        this.currentSectionIndex === 3
+      );
     }
   },
   methods: {
@@ -157,6 +199,11 @@ export default {
       // );
       document.addEventListener("keydown", this.onKeyDown);
     }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.isShowAnimatedElements = true;
+    }, 500);
   },
   beforeDestroy() {
     if (process.client) {
@@ -507,6 +554,20 @@ a {
       width: px-to-vh(40);
       height: px-to-vh(40);
     }
+  }
+}
+
+.slide-right {
+  &-enter,
+  &-leave-to {
+    transform: translateX(-13vw);
+  }
+}
+
+.slide-up {
+  &-enter,
+  &-leave-to {
+    transform: translateY(20vw);
   }
 }
 </style>
