@@ -3,6 +3,10 @@ const env = require("dotenv").config();
 PUBLIC_PATH = "portfolio-nuxt";
 
 module.exports = {
+  target: "static",
+  router: {
+    base: `/${PUBLIC_PATH}/`
+  },
   cache: false,
   /*
    ** Headers of the page
@@ -26,7 +30,6 @@ module.exports = {
    ** Build configuration
    */
   build: {
-    publicPath: PUBLIC_PATH,
     /*
      ** Run ESLint on save
      */
