@@ -63,12 +63,20 @@ export default {
           },
           {
             text: ["SmaSS technologies LLC,", "Frontend developer"],
-            date: "March 2018 - now"
+            date: "March 2018 - January 2020"
+          },
+          {
+            text: ["Castle Digital Partners,", "Frontend developer"],
+            date: "February 2020 - now"
           }
         ],
         Skills: [
           {
-            text: ["HTML, Pug, CSS, SCSS", "JavaScript, TypeScript, VueJS"]
+            text: [
+              "HTML, Pug, CSS, SCSS",
+              "JavaScript, TypeScript",
+              "React, VueJS"
+            ]
           }
         ],
         "Competitions & Hackathons": [
