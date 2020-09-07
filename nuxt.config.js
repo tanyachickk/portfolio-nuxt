@@ -1,5 +1,7 @@
 const env = require("dotenv").config();
 
+PUBLIC_PATH = "portfolio-nuxt";
+
 module.exports = {
   cache: false,
   /*
@@ -12,7 +14,9 @@ module.exports = {
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { hid: "description", name: "description", content: "Nuxt.js project" }
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+    link: [
+      { rel: "icon", type: "image/x-icon", href: `${PUBLIC_PATH}/favicon.ico` }
+    ]
   },
   /*
    ** Customize the progress bar color
@@ -22,6 +26,7 @@ module.exports = {
    ** Build configuration
    */
   build: {
+    publicPath: PUBLIC_PATH,
     /*
      ** Run ESLint on save
      */
