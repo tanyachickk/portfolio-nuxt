@@ -13,6 +13,7 @@
       id="bg-pattern"
       width="100%"
       height="100%"
+      patternUnits="userSpaceOnUse"
       patternTransform="rotate(0)"
     >
       <image
@@ -58,6 +59,14 @@ export default {
         h = ((h << 5) - h + flatStr.charCodeAt(i++)) | 0;
       }
       return `clipping-text-${h}`;
+    }
+  },
+  created() {
+    if (process.client) {
+      // fix SVGs fail to render on initial page load in Chrome 84
+      document.querySelectorAll("svg").forEach(x => {
+        x.innerHTML = x.innerHTML;
+      });
     }
   }
 };
