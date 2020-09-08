@@ -37,7 +37,7 @@
           .menu__link(
             v-if="isShowAnimatedElements"
             v-for="(section, index) in sections"
-            :key="section"
+            :key="section.link"
             :class="index === currentSectionIndex && 'active'"
             :style="`transition: transform 600ms ease ${index * 150}ms`"
             @click="changeSection(index)"

@@ -1,5 +1,5 @@
 <template lang="pug">
-  a.logo(href="/")
+  a.logo(href=".")
     .logo__row TK
     .logo__row TK
 </template>

@@ -4,7 +4,7 @@
     "description": "A custom built clone of Apple's default Reminders app written using React, React Hooks, Styled-components and Firebase",
     "technologies": ["React", "React Hooks", "Firebase", "Styled-components"],
     "img": {
-      "src": "/reminders-mockup.png",
+      "src": "./reminders-mockup.png",
       "vertical": false
     },
     "deploy": "https://react-reminder.firebaseapp.com/",
@@ -15,7 +15,7 @@
     "description": "Portfolio landing page developed as part of mentoring at LoftSchool written using Pug, PostCSS and VueJS",
     "technologies": ["Pug", "PostCSS", "VueJS"],
     "img": {
-      "src": "/ls-portfolio-mockup.png",
+      "src": "./ls-portfolio-mockup.png",
       "vertical": false
     },
     "deploy": "https://tanyachickk.github.io/loftschool-course",
@@ -26,7 +26,7 @@
     "description": "Admin panel for managing content on a landing page developed as part of mentoring at LoftSchool written using Pug, PostCSS and VueJS",
     "technologies": ["Pug", "PostCSS", "VueJS"],
     "img": {
-      "src": "/ls-admin-mockup.png",
+      "src": "./ls-admin-mockup.png",
       "vertical": false
     },
     "deploy": "https://tanyachickk.github.io/loftschool-course/admin",
@@ -37,7 +37,7 @@
     "description": "A custom built partial clone of VK mobile app written using React Native and Styled-components",
     "technologies": ["React Native", "MobX", "Styled-components"],
     "img": {
-      "src": "/vk-mockup.png",
+      "src": "./vk-mockup.png",
       "vertical": true
     },
     "github": "https://github.com/tanyachickk/vk-mobile"
@@ -47,7 +47,7 @@
     "description": "Admin dashboard for creating targeted polls and viewing statistics developed as part of Leaders of Digital hackathon",
     "technologies": ["VueJS", "TypeScript", "Pug", "SCSS"],
     "img": {
-      "src": "/med-mockup.png",
+      "src": "./med-mockup.png",
       "vertical": false
     },
     "github": "https://github.com/tanyachickk/icare_frontend"
@@ -57,7 +57,7 @@
     "description": "Admin dashboard for managing work processes of the main control department of Moscow developed as part of Urban.tech Challenge hackathon",
     "technologies": ["VueJS", "TypeScript", "Pug", "SCSS"],
     "img": {
-      "src": "/control-mockup.png",
+      "src": "./control-mockup.png",
       "vertical": false
     },
     "github": "https://github.com/tanyachickk/control"

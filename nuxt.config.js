@@ -3,7 +3,6 @@ const env = require("dotenv").config();
 PUBLIC_PATH = "portfolio-nuxt";
 
 module.exports = {
-  target: "static",
   router: {
     base: `/${PUBLIC_PATH}/`
   },
@@ -19,7 +18,7 @@ module.exports = {
       { hid: "description", name: "description", content: "Nuxt.js project" }
     ],
     link: [
-      { rel: "icon", type: "image/x-icon", href: `${PUBLIC_PATH}/favicon.ico` }
+      { rel: "icon", type: "image/x-icon", href: `/${PUBLIC_PATH}/favicon.ico` }
     ]
   },
   /*
@@ -30,6 +29,7 @@ module.exports = {
    ** Build configuration
    */
   build: {
+    publicPath: "/assets/",
     /*
      ** Run ESLint on save
      */

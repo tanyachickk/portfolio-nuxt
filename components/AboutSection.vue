@@ -110,7 +110,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: url("./../assets/images/content-bg.jpg") no-repeat center center;
+  background: url("~@/assets/images/content-bg.jpg") no-repeat center center;
   background-size: cover;
   height: 100%;
 

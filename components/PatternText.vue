@@ -3,11 +3,18 @@
     <defs>
       <clipPath :id="clippingId">
         <text x="0" y="0" dx="0" dy="0">
-          <tspan v-for="(row, index) in text" :key="index" x="0" dy="1.2em">{{ row }}</tspan>
+          <tspan v-for="(row, index) in text" :key="index" x="0" dy="1.2em">
+            {{ row }}
+          </tspan>
         </text>
       </clipPath>
     </defs>
-    <pattern id="bg-pattern" width="100%" height="100%" patternTransform="rotate(0)">
+    <pattern
+      id="bg-pattern"
+      width="100%"
+      height="100%"
+      patternTransform="rotate(0)"
+    >
       <image
         preserveAspectRatio="none"
         xlink:href="~@/assets/images/pink-bg.jpg"
